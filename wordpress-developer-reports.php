@@ -68,6 +68,11 @@ function wp_dev_reports_page_callback() {
 			<p>Your data is current as of <? echo date( 'F d, Y h:ia', current_time( 'timestamp', 0 ) ); ?> (right now).</p>
 			<p><em>Not your current local time? <a href="/wp-admin/options-general.php#default_role">Update your time zone.</a></em></p>
 		</div>
+		<div class="module">
+			<h3>About WordPress</h3>
+			<p>You are running WordPress <?php echo $wp_version; ?> (global variable).</p>
+			<p>You are running WordPress <?php echo get_bloginfo('version'); ?> (bloginfo).</p>
+		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
 			<?php do_settings_sections('wp_dev_reports'); ?>
