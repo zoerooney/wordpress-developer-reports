@@ -71,7 +71,7 @@ function wp_dev_reports_page_callback() {
 		<div class="module">
 			<h3>About WordPress</h3>
 			<p>You are running WordPress <?php echo get_bloginfo('version'); ?>.</p>
-			<p>The latest version is <?php echo wp_version_check(); ?></p>
+			<p>The latest version is <?php print wp_version_check(); ?></p>
 		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
