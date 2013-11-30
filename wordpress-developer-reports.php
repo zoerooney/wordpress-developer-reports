@@ -48,6 +48,7 @@ add_action('admin_menu', 'wp_dev_reports_menu_register_page');
 function wp_dev_reports_menu_register_page() {
 	add_submenu_page( 'tools.php', 'Generate Developer Reports', 'Developer Reports', 'manage_options', 'wp-dev-reports', 'wp_dev_reports_page_callback' );
 }
+// To Do: Add link to settings page from Plugins page
 
 /* Create the settings page
 =============================================*/
@@ -63,7 +64,25 @@ function wp_dev_reports_page_callback() {
 	<!-- Set up our basic page structure -->
 	<div class="wrap">
 	<h2 id="wp_dev_reports">Generate Developer Reports</h2>
-	
+		<div class="module">
+			<h3>Right Now</h3>
+			<p>Your data is current as of <? echo date("F d, Y h:ia"); ?> (right now).</p>
+			<p><em>Not your current local time? <a href="/wp-admin/options-general.php#timezone_string">Update your time zone.</a></em></p>
+		</div>
+		<div class="module">
+			<h3>About WordPress</h3>
+			<p>You are running WordPress <?php echo $wp_version; ?>.</p>
+			<?php $url = 'http://wordpress.org/latest';
+				  stream_context_set_default(
+				      array(
+				          'http' => array(
+				              'method' => 'HEAD'
+				          )
+				      )
+				  );
+				  $headers = array get_headers ( string $url ); ?>
+			<p>The latest version of WordPress is <?php print_r($headers); ?></p>
+		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
 			<?php do_settings_sections('wp_dev_reports'); ?>
