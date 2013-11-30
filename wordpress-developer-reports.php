@@ -63,7 +63,11 @@ function wp_dev_reports_page_callback() {
 	<!-- Set up our basic page structure -->
 	<div class="wrap">
 	<h2 id="wp_dev_reports">Generate Developer Reports</h2>
-	
+		<div class="module">
+			<h3>Right Now</h3>
+			<p>Your data is current as of <? echo date("F d, Y h:ia"); ?> (right now).</p>
+			<p><em>Not your current local time? <a href="/wp-admin/options-general.php#timezone_string">Update your time zone.</a></em></p>
+		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
 			<?php do_settings_sections('wp_dev_reports'); ?>
