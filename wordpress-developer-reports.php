@@ -249,7 +249,7 @@ function wp_dev_reports_tipanimation_input() {
 //}
 //function wp_dev_reports_tipcontent_input() {
 //	echo '<textarea name="wp_dev_reports_options[tipcontent]">' . $options[tipcontent] . '</textarea></div>';
-}
+//}
 
 // Let's validate this stuff
 function wp_dev_reports_validation( $input ) {
