@@ -80,9 +80,10 @@ function wp_dev_reports_page_callback() {
 				  );
 				  $headers = get_headers( $url ); 
 				  $file = $headers[8];
+				  $latest = str_replace( array('Content-Disposition: attachment; filename=wordpress-','.tar.gz'), '', $file );
 				  ?>
 			
-			<p>The latest version of WordPress is <?php $latest = str_replace(array('Content-Disposition: attachment; filename=wordpress-','.tar.gz'), '', $file); echo $latest; ?>. <?php if ( $latest == $version ) { echo 'Current!'; } else { echo 'Update!' } ?> <?php if ( strpos( $file[8], $version ) !== false ) { echo 'You\'re up to date!'; } else { echo 'Please update!'; } ?></p>
+			<p>The latest version of WordPress is <?php  echo $latest; ?>. <?php if ( $latest == $version ) { echo 'Current!'; } else { echo 'Update!'; } ?> </p>
 		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
