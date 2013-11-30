@@ -70,20 +70,22 @@ function wp_dev_reports_page_callback() {
 		</div>
 		<div class="module">
 			<h3>About WordPress</h3>
-			<p>You are running WordPress
-			<?php global $wp_version;
-			echo $wp_version; $version = get_bloginfo('version'); ?>
-			<strong><?php echo $version; ?></strong>.</p>
-			<?php $url = 'http://wordpress.org/latest';
-				  stream_context_set_default(
-				      array( 'http' => array( 'method' => 'HEAD' ) )
-				  );
-				  $headers = get_headers( $url ); 
-				  $file = $headers[8];
-				  $latest = str_replace( array('Content-Disposition: attachment; filename=wordpress-','.tar.gz'), '', $file );
-				  ?>
 			
-			<p>The latest version of WordPress is <?php  echo $latest; ?>. <?php if ( $latest == $version ) { echo 'Current!'; } else { echo 'Update!'; } ?> </p>
+			<?php 
+				// Check version of WP installed, assign to variable
+				$version = get_bloginfo('version'); 
+				// Check current version of WP available, assign just version number to variable
+				$url = 'http://wordpress.org/latest';
+				stream_context_set_default(
+				    array( 'http' => array( 'method' => 'HEAD' ) )
+				);
+				$headers = get_headers( $url ); 
+				$file = $headers[8]; // Get just the content info including filename
+				$latest = str_replace( array('Content-Disposition: attachment; filename=wordpress-','.tar.gz'), '', $file ); // Get rid of everything except the version number
+			?>
+			<p>You are running WordPress <strong><?php echo $version; ?></strong>.</p>
+			<p>The latest version of WordPress is <?php  echo $latest; ?>. <?php if ( $latest !== $version ) { echo 'Please <a href="/wp-admin/update-core.php">update WordPress</a>!'; } ?> </p>
+			
 		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
