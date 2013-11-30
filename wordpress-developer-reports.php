@@ -89,11 +89,11 @@ function wp_dev_reports_page_callback() {
 			<?php endif; ?>
 			
 		</div>
-		<form action="options.php" method="post">
+		<!--<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
 			<?php do_settings_sections('wp_dev_reports'); ?>
 			<input name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
-		</form>
+		</form>-->
 		
 	</div>
 				
