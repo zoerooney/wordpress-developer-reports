@@ -3,7 +3,7 @@
 Plugin Name: WordPress Developer Reports
 Plugin URI: http://zoerooney.com
 Description: Simple but useful reports on core, themes, and plugins for Wordpress.
-Version: 0.0.1
+Version: 0.0.3
 Author: Zoe Rooney
 Author URI: http://zoerooney.com
 License: GPL2
@@ -48,6 +48,7 @@ add_action('admin_menu', 'wp_dev_reports_menu_register_page');
 function wp_dev_reports_menu_register_page() {
 	add_submenu_page( 'tools.php', 'Generate Developer Reports', 'Developer Reports', 'manage_options', 'wp-dev-reports', 'wp_dev_reports_page_callback' );
 }
+// To Do: Add link to settings page from Plugins page
 
 /* Create the settings page
 =============================================*/
@@ -63,7 +64,21 @@ function wp_dev_reports_page_callback() {
 	<!-- Set up our basic page structure -->
 	<div class="wrap">
 	<h2 id="wp_dev_reports">Generate Developer Reports</h2>
-	
+		<div class="module">
+			<h3>Right Now</h3>
+			<p>Your data is current as of <? echo date("F d, Y h:ia"); ?> (right now).</p>
+			<p><em>Not your current local time? <a href="/wp-admin/options-general.php#timezone_string">Update your time zone.</a></em></p>
+		</div>
+		<div class="module">
+			<h3>About WordPress</h3>
+			<p>You are running WordPress <?php echo $wp_version; ?>.</p>
+			<?php $url = 'http://wordpress.org/latest';
+				  stream_context_set_default(
+				      array( 'http' => array( 'method' => 'HEAD' ) )
+				  );
+				  $headers = get_headers( $url ); ?>
+			<p>The latest version of WordPress is <?php print_r($headers); ?></p>
+		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
 			<?php do_settings_sections('wp_dev_reports'); ?>
@@ -77,8 +92,8 @@ function wp_dev_reports_page_callback() {
 /* Register all the necessary settings
 =============================================*/
 
-add_action('admin_init', 'wp_dev_reports_admin_init');
-function wp_dev_reports_admin_init(){
+// add_action('admin_init', 'wp_dev_reports_admin_init');
+// function wp_dev_reports_admin_init(){
 //  TO DO: NEED TO FIGURE OUT WHAT I WANT HERE, THIS IS ALL STUFF FROM JOYRIDE
 //
 //	register_setting(
@@ -167,7 +182,7 @@ function wp_dev_reports_admin_init(){
 //		'wp_dev_reports_feature_tips'
 //	);
 
-}
+// }
 
 /* Now, display all those settings
 =============================================*/
@@ -230,10 +245,10 @@ function wp_dev_reports_tipanimation_input() {
 //}
 //function wp_dev_reports_tipcontent_input() {
 //	echo '<textarea name="wp_dev_reports_options[tipcontent]">' . $options[tipcontent] . '</textarea></div>';
-}
+// }
 
 // Let's validate this stuff
-function wp_dev_reports_validation( $input ) {
+// function wp_dev_reports_validation( $input ) {
 //  TO DO: VALIDATION
 //
 //  if ( ! $input['scrollspeed'] )
@@ -254,7 +269,7 @@ function wp_dev_reports_validation( $input ) {
 //  	$input['nextbutton'] = ( $input['nextbutton'] == "true" ? "true" : "false" );
 //   	
 //  return $input;
-}
+// }
 
 // TO DO: NEED TO OUTPUT THIS STUFF SOMEPLACE...
 
