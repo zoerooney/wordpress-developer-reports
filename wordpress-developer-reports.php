@@ -80,7 +80,7 @@ function wp_dev_reports_page_callback() {
 				          )
 				      )
 				  );
-				  $headers = array get_headers ( string $url ); ?>
+				  $headers = array get_headers( $url ); ?>
 			<p>The latest version of WordPress is <?php print_r($headers); ?></p>
 		</div>
 		<form action="options.php" method="post">
