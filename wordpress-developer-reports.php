@@ -71,13 +71,14 @@ function wp_dev_reports_page_callback() {
 		<div class="module">
 			<h3>About WordPress</h3>
 			<p>You are running WordPress
-			<?php $version = get_bloginfo('version'); echo $version; ?>.</p>
+			<?php $version = get_bloginfo('version'); ?>
+			<strong><?php echo $version; ?></strong>.</p>
 			<?php $url = 'http://wordpress.org/latest';
 				  stream_context_set_default(
 				      array( 'http' => array( 'method' => 'HEAD' ) )
 				  );
 				  $headers = get_headers( $url ); ?>
-			<p>The latest version of WordPress is <?php if ( strpos( $headers[8], $version ) !== false ) { ?>You're up to date!<?php } else {} ?></p>
+			<p>The latest version of WordPress is <?php echo $headers[8]; ?>. <?php if ( strpos( $headers[8], $version ) !== false ) { ?>You're up to date!<?php } else { ?>Please update!<?php } ?></p>
 		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
