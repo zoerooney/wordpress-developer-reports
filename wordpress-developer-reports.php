@@ -76,7 +76,7 @@ function wp_dev_reports_page_callback() {
 				      array( 'http' => array( 'method' => 'HEAD' ) )
 				  );
 				  $headers = get_headers( $url ); ?>
-			<p>The latest version of WordPress is <?php print_r($headers); ?></p>
+			<p>The latest version of WordPress is <?php echo $headers[8]; ?></p>
 		</div>
 		<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
