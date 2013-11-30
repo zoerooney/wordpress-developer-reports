@@ -84,7 +84,9 @@ function wp_dev_reports_page_callback() {
 				$latest = str_replace( array('Content-Disposition: attachment; filename=wordpress-','.tar.gz'), '', $file ); // Get rid of everything except the version number
 			?>
 			<p>You are running WordPress <strong><?php echo $version; ?></strong>.</p>
-			<p>The latest version of WordPress is <?php  echo $latest; ?>. <?php if ( $latest !== $version ) { echo 'Please <a href="/wp-admin/update-core.php">update WordPress</a>!'; } ?> </p>
+			<?php if ( $latest !== $version ) : ?>
+				<p>The latest version of WordPress is <?php  echo $latest; ?>. Please <a href="/wp-admin/update-core.php">update WordPress</a>!</p>
+			<?php endif; ?>
 			
 		</div>
 		<form action="options.php" method="post">
