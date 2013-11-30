@@ -3,7 +3,7 @@
 Plugin Name: WordPress Developer Reports
 Plugin URI: http://zoerooney.com
 Description: Simple but useful reports on core, themes, and plugins for Wordpress.
-Version: 0.0.5
+Version: 0.0.6
 Author: Zoe Rooney
 Author URI: http://zoerooney.com
 License: GPL2
