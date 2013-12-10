@@ -109,7 +109,7 @@ function wp_dev_reports_page_callback() {
 					
 					<dt>
 						<!-- Display linked title -->
-						<a href="<?php echo $plugin_data['Author']; ?>">
+						<a href="<?php echo $plugin_data['PluginURI']; ?>">
 							<?php echo $plugin_data['Title']; ?>
 						</a>
 					</dt>
