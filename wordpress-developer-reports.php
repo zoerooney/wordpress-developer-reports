@@ -95,8 +95,19 @@ function wp_dev_reports_page_callback() {
 			<?php 
 				// assign get_plugins() to a variable
 				$current_plugins = get_plugins();
-				// dump the results so we can see what we're working with 
-				var_dump($current_plugins);	
+				
+				// something should happen if no plugins are installed
+				if ( empty( $current_plugins ) ) :
+					echo '<p>Unable to display plugins. This could mean there are no plugins installed, or that the plugins directory is inaccessible.</p>';
+				endif; 
+				
+				// loop through each plugin retrieved
+				foreach ( $current_plugins as $current_plugin => $plugin_data ) :
+					
+					// display the title
+					echo $plugin_data['Title'];
+					
+				endforeach;
 			?>
 		</div>
 		<!--<form action="options.php" method="post">
