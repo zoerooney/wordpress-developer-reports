@@ -108,9 +108,19 @@ function wp_dev_reports_page_callback() {
 				foreach ( $current_plugins as $current_plugin => $plugin_data ) : ?>
 					
 					<dt>
-						<?php // display the title
-						echo $plugin_data['Title']; ?>
+						<!-- Display linked title -->
+						<a href="<?php echo $plugin_data['Author']; ?>">
+							<?php echo $plugin_data['Title']; ?>
+						</a>
 					</dt>
+					<dd>
+						<!-- Display Plugin Info -->
+						Author:  <?php echo $plugin_data['Author']; ?><br>
+						Version: <?php echo $plugin_data['Version']; ?><br>
+						
+						
+						This plugin is currently <?php if ( is_plugin_active( $current_plugin ) : echo 'active'; else : echo 'inactive'; endif; ?>
+					</dd>
 					
 				<?php endforeach;
 				
