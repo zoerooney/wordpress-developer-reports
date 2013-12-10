@@ -101,13 +101,20 @@ function wp_dev_reports_page_callback() {
 					echo '<p>Unable to display plugins. This could mean there are no plugins installed, or that the plugins directory is inaccessible.</p>';
 				endif; 
 				
+				// format as description list
+				echo '<dl>';
+				
 				// loop through each plugin retrieved
-				foreach ( $current_plugins as $current_plugin => $plugin_data ) :
+				foreach ( $current_plugins as $current_plugin => $plugin_data ) : ?>
 					
-					// display the title
-					echo $plugin_data['Title'];
+					<dt>
+						<?php // display the title
+						echo $plugin_data['Title']; ?>
+					</dt>
 					
-				endforeach;
+				<?php endforeach;
+				
+				echo '</dl>';
 			?>
 		</div>
 		<!--<form action="options.php" method="post">
