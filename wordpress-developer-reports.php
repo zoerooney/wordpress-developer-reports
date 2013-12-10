@@ -3,7 +3,7 @@
 Plugin Name: WordPress Developer Reports
 Plugin URI: http://zoerooney.com
 Description: Simple but useful reports on core, themes, and plugins for Wordpress.
-Version: 0.0.6
+Version: 0.0.7
 Author: Zoe Rooney
 Author URI: http://zoerooney.com
 License: GPL2
@@ -88,6 +88,16 @@ function wp_dev_reports_page_callback() {
 				<p>The latest version of WordPress is <?php  echo $latest; ?>. Please <a href="/wp-admin/update-core.php">update WordPress</a>!</p>
 			<?php endif; ?>
 			
+		</div>
+		<div class="module">
+			<h3>Currently Installed Plugins</h3>
+			
+			<?php 
+				// assign get_plugins() to a variable
+				$current_plugins = get_plugins();
+				// dump the results so we can see what we're working with 
+				var_dump($current_plugins);	
+			?>
 		</div>
 		<!--<form action="options.php" method="post">
 			<?php settings_fields('wp_dev_reports_options'); ?>
