@@ -119,7 +119,7 @@ function wp_dev_reports_page_callback() {
 						Version: <?php echo $plugin_data['Version']; ?><br>
 						
 						
-						This plugin is currently <?php if ( is_plugin_active( $current_plugin ) : echo 'active'; else : echo 'inactive'; endif; ?>
+						This plugin is currently <?php if ( is_plugin_active( $current_plugin ) ) : echo 'active'; else : echo 'inactive'; endif; ?>
 					</dd>
 					
 				<?php endforeach;
